@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="portfolioApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Portfolio Website</title>
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo">Wall-E04</a>
+        <nav>
+            <a href="#!home" ng-class="{'active': currentPage === 'home'}">Home</a>
+            <a href="#!services" ng-class="{'active': currentPage === 'services'}">Services</a>
+            <a href="#!skills" ng-class="{'active': currentPage === 'skills'}">Skills</a>
+            <a href="#!education" ng-class="{'active': currentPage === 'education'}">Education</a>
+            <a href="#!experience" ng-class="{'active': currentPage === 'experience'}">Experience</a>
+            <a href="#!contact" ng-class="{'active': currentPage === 'contact'}">Contact</a>
+        </nav>
+    </header>
+
+    <!-- ng-view to display dynamic content -->
+    <div ng-view></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script>
+        // AngularJS App
+        var app = angular.module('portfolioApp', ['ngRoute']);
+
+        // Config routes
+        app.config(function($routeProvider) {
+            $routeProvider
+                .when('/home', {
+                    templateUrl: 'pages/home.html',
+                    controller: 'HomeController'
+                })
+                .when('/services', {
+                    templateUrl: 'pages/services.html',
+                    controller: 'ServicesController'
+                })
+                .when('/skills', {
+                    templateUrl: 'pages/skills.html',
+                    controller: 'SkillsController'
+                })
+                .when('/education', {
+                    templateUrl: 'pages/education.html',
+                    controller: 'EducationController'
+                })
+                .when('/experience', {
+                    templateUrl: 'pages/experience.html',
+                    controller: 'ExperienceController'
+                })
+                .when('/contact', {
+                    templateUrl: 'pages/contact.html',
+                    controller: 'ContactController'
+                })
+                .otherwise({
+                    redirectTo: '/home'
+                });
+        });
+
+        // Controllers
+        app.controller('HomeController', function($scope) {
+            $scope.currentPage = 'home';
+        });
+
+        app.controller('ServicesController', function($scope) {
+            $scope.currentPage = 'services';
+        });
+
+        app.controller('SkillsController', function($scope) {
+            $scope.currentPage = 'skills';
+        });
+
+        app.controller('EducationController', function($scope) {
+            $scope.currentPage = 'education';
+        });
+
+        app.controller('ExperienceController', function($scope) {
+            $scope.currentPage = 'experience';
+        });
+
+        app.controller('ContactController', function($scope) {
+            $scope.currentPage = 'contact';
+        });
+    </script>
+</body>
+
+</html>
